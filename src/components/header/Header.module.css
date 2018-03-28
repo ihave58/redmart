@@ -1,0 +1,44 @@
+.header {
+    background: #ee4054;
+    padding: 0 10px;
+    height: 45px;
+    font-size: 14px;
+}
+
+.logoContainer {
+    display: inline-block;
+}
+
+.logoContainer:hover {
+    background: RED;
+}
+
+.logo {
+    fill: #ffffff;
+    display: block;
+}
+
+.searchContainer {
+    position: relative;
+    align-items: center;
+    display: flex;
+}
+
+.cartContainer {
+}
+
+.cartLink {
+    float: right;
+    margin-top: 5px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 25px;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+}
+
+.cartLink:hover {
+    opacity: 1;
+    border: 1px solid #cccccc;
+}

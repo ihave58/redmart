@@ -1,10 +1,11 @@
-- [Available Scripts](#available-scripts)
+- Available Commands
   - npm start
   - npm run lint
   - npm test
   - npm run build
   - npm run eject
 
+To start the project run, **npm install** and then **npm start** 
 
 Challenge:
 We would like you to build the frontend of a small webapp based on the wireframes attached along with this mail. We've also attached a zip file containing the assets.

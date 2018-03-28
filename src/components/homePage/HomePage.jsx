@@ -1,25 +1,17 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import Header from '../header';
+import HomePageStyles from './HomePage.module.css';
 
 class HomePage extends Component {
     render() {
         return (
-            <div className="product-details-page">
-                Welcome to Redmart!
-
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-
-                    <li>
-                        <Link to="/search">Browse Products</Link>
-                    </li>
-
-                    <li>
-                        <Link to="/cart">Cart</Link>
-                    </li>
-                </ul>
+            <div className={HomePageStyles.homePage}>
+                <div className="header-container">
+                    <Header/>
+                </div>
+                <div className={HomePageStyles.pageContainer}>
+                    Welcome to Homepage
+                </div>
             </div>
         );
     }
