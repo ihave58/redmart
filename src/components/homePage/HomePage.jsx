@@ -6,11 +6,11 @@ class HomePage extends Component {
     render() {
         return (
             <div className={HomePageStyles.homePage}>
-                <div className="header-container">
+                <div className={HomePageStyles.headerContainer}>
                     <Header/>
                 </div>
                 <div className={HomePageStyles.pageContainer}>
-                    Welcome to Homepage
+                    Welcome to HomePage
                 </div>
             </div>
         );

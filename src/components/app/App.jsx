@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 
 import HomePage from '../homePage';
 import CartPage from '../cartPage';
@@ -19,6 +19,7 @@ class App extends Component {
                             <Route path="/search" component={BrowsePage}/>
                             <Route path="/products/:productId" component={ProductDetailsPage}/>
                             <Route path="/cart" component={CartPage}/>
+                            <Redirect to="/"/>
                         </Switch>
                     </div>
                 </div>
