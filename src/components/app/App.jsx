@@ -6,14 +6,14 @@ import CartPage from '../cartPage';
 import BrowsePage from '../browsePage';
 import ProductDetailsPage from '../productDetailsPage';
 
-import './App.module.css';
+import AppStyles from './App.module.css';
 
 class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <div className="app">
-                    <div className="page-container">
+                <div className={AppStyles.app}>
+                    <div className={AppStyles.pageContainer}>
                         <Switch>
                             <Route exact path="/" component={HomePage}/>
                             <Route path="/search" component={BrowsePage}/>

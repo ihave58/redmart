@@ -12,6 +12,7 @@ class SearchBox extends Component {
         };
 
         this.onSearchTermChange = this.onSearchTermChange.bind(this);
+        this.onSearchButtonClick = this.onSearchButtonClick.bind(this);
         this.onSearchSubmit = this.onSearchSubmit.bind(this);
     }
 
@@ -30,6 +31,10 @@ class SearchBox extends Component {
         this.props.onSearch(params);
     }
 
+    onSearchButtonClick(event) {
+        this.onSearchSubmit(event);
+    }
+
     render() {
         return (
             <div className={SearchBoxStyles.search}>
@@ -41,7 +46,7 @@ class SearchBox extends Component {
 
                     <button
                         className={SearchBoxStyles.searchButton}
-                        onClick={this.onSearchSubmit}>
+                        onClick={this.onSearchButtonClick}>
                         <img width="20px" height="20px" alt="search-icon"
                              className={SearchBoxStyles.searchIcon}
                              src={SearchImageIcon}

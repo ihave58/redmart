@@ -1,5 +1,9 @@
+@value colors: "../../commons/styles/colors.module.css";
+
+@value brandPink, backgroundWhite, borderGreyOnHover from colors;
+
 .header {
-    background: #ee4054;
+    background: brandPink;
     padding: 0 10px;
     height: 45px;
     font-size: 14px;
@@ -14,7 +18,7 @@
 }
 
 .logo {
-    fill: #ffffff;
+    fill: backgroundWhite;
     display: block;
 }
 
@@ -33,12 +37,12 @@
     text-decoration: none;
     display: inline-block;
     padding: 8px 25px;
-    color: #ffffff;
-    border: 1px solid #ffffff;
+    color: backgroundWhite;
+    border: 1px solid backgroundWhite;
     border-radius: 3px;
 }
 
 .cartLink:hover {
     opacity: 1;
-    border: 1px solid #cccccc;
+    border: 1px solid borderGreyOnHover;
 }

@@ -14,8 +14,8 @@
 
 .searchButton {
     position: absolute;
-    right: -15px;
-    top: 8px;
+    right: 10px;
+    top: 7px;
     padding: 5px;
     border: none;
     background: none;
@@ -25,6 +25,7 @@
 
 .searchButton:hover {
     top: 6px;
+    right: 8px;
     zoom: 1.1;
 }
 

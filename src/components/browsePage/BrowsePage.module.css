@@ -1,3 +1,7 @@
+@value colors: "../../commons/styles/colors.module.css";
+
+@value borderGrey from colors;
+
 .browsePage {
 
 }
@@ -8,4 +12,14 @@
 
 .pageContainer {
     padding: 10px;
+}
+
+.filterBoxContainer {
+    border: 1px solid borderGrey;
+}
+
+.contentContainer {
+    border: 1px solid borderGrey;
+    min-height: 300px;
+    margin-left: 10px;
 }

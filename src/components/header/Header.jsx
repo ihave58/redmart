@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import SearchBox from '../SearchBox';
+import SearchBox from '../searchBox';
 
 import HeaderStyles from './Header.module.css';
 import GridStyles from '../../commons/styles/grid.module.css';
 import Logo from './logo.svg';
 
+import cx from 'classnames';
 import {Link} from 'react-router-dom';
 import {UrlBuilder} from '../../commons/utils';
 
@@ -24,7 +25,7 @@ class Header extends Component {
 
     render() {
         return (
-            <div className={`${HeaderStyles.header} ${GridStyles.grid}`}>
+            <div className={cx(HeaderStyles.header, GridStyles.grid)}>
                 <div className={GridStyles.gridCell}>
                     <Link to="/" className={HeaderStyles.logoContainer}>
                         <img className={HeaderStyles.logo}
@@ -34,14 +35,15 @@ class Header extends Component {
                     </Link>
                 </div>
 
-                <div className={`${GridStyles.gridCell} ${HeaderStyles.searchContainer}`}>
+                <div className={cx(HeaderStyles.searchContainer, GridStyles.gridCell)}>
                     <SearchBox searchTerm={this.searchTerm}
                                onSearch={this.onSearch}
                     />
                 </div>
 
-                <div className={`${GridStyles.gridCell} ${HeaderStyles.cartContainer}`}>
-                    <Link className={HeaderStyles.cartLink} to="/cart">Cart</Link>
+                <div className={cx(HeaderStyles.cartContainer, GridStyles.gridCell)}>
+                    <Link className={HeaderStyles.cartLink}
+                          to="/cart">Cart</Link>
                 </div>
             </div>
         );
