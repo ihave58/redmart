@@ -2,17 +2,66 @@ import React, {Component} from 'react';
 
 import Header from '../header';
 import FilterBox from '../filterBox';
+import List from '../List';
+import ProductCard from '../productCard';
+import {RandomGenerator} from '../../commons/utils';
 
 import cx from 'classnames';
 import BrowsePageStyles from './BrowsePage.module.css';
 import GridStyles from '../../commons/styles/grid.module.css';
 import data from '../../mock/data';
 
+const getAbsoluteImagePath = imageName => {
+    return `/static/assets/${imageName}`;
+};
+
+const fetchProducts = () => {
+    return data.products.map(product => {
+        const key = RandomGenerator.getUID();
+
+        return {
+            ...product,
+            key: key,
+            image: getAbsoluteImagePath(product.image)
+        };
+    });
+};
+
+const fetchFilters = () => {
+    return data.filters;
+};
+
 class BrowsePage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            filters: [],
+            products: []
+        };
+
+        this.onAddToCart = this.onAddToCart.bind(this);
+        this.productCardRenderer = this.productCardRenderer.bind(this);
+    }
+
+    onAddToCart(product) {
+        console.log('onAddToCart:', product);
+    }
+
+    productCardRenderer(product) {
+        return (
+            <ProductCard key={product.key}
+                         product={product}
+                         onAddToCart={this.onAddToCart}
+            />
+        );
+    }
+
+    componentDidMount() {
+        this.setState({
+            filters: fetchFilters(),
+            products: fetchProducts()
+        });
     }
 
     render() {
@@ -40,13 +89,16 @@ class BrowsePage extends Component {
                 <div className={BrowsePageStyles.pageContainer}>
                     <div className={gridContainerClasses}>
                         <div className={filterBoxContainerClasses}>
-                            <FilterBox filters={data.filters}/>
+                            <FilterBox filters={this.state.filters}/>
                         </div>
                         <div className={contentContainerClasses}>
-
+                            <List itemWidth="240px"
+                                  itemHeight="340px"
+                                  itemRenderer={this.productCardRenderer}
+                                  items={this.state.products}
+                            />
                         </div>
                     </div>
-
                 </div>
             </div>
         );

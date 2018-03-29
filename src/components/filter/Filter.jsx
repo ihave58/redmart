@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FilterStyles from './Filter.module.css';
-import RandomGenerator from '../../commons/utils/randomGenerator';
+import {RandomGenerator} from '../../commons/utils';
 
 class Filter extends Component {
     constructor(props) {

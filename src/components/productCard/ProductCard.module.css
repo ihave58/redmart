@@ -1,0 +1,62 @@
+@value colors: "../../commons/styles/colors.module.css";
+
+@value bodyText, backgroundWhite, buttonBackground, buttonBackgroundOnHover from colors;
+
+.productCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+
+    color: bodyText;
+    padding: 10px;
+}
+
+.imageContainer {
+
+}
+
+.contentContainer {
+    text-align: center;
+    opacity: 0.8;
+    user-select: none;
+}
+
+.productCard:hover .contentContainer {
+    opacity: 1;
+}
+
+.name {
+    text-align: center;
+}
+
+.measurement {
+    margin: 10px 0 0 0;
+}
+
+.price {
+    margin: 10px 0 0 0;
+    font-weight: bold;
+}
+
+.addToCartContainer {
+
+}
+
+.addToCart {
+    height: 44px;
+    width: 140px;
+    font-size: 1em;
+    border: none;
+
+    background: buttonBackground;
+    border-radius: 4px;
+    color: backgroundWhite;
+}
+
+.addToCart:hover {
+    background: buttonBackgroundOnHover;
+    cursor: pointer;
+}

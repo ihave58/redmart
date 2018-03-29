@@ -1,9 +1,15 @@
 @value brandPink: #ee4054;
 
-@value brandPinkHover: #232323;
+@value backgroundWhite: #ffffff;
 
 @value borderGrey: #eeeeee;
 
 @value borderGreyOnHover: #cccccc;
 
-@value backgroundWhite: #ffffff;
+@value bodyText: #333333;
+
+@value bodyTextOnHover: #000000;
+
+@value buttonBackground: #ee4054;
+
+@value buttonBackgroundOnHover: #de142b;

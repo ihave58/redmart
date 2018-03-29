@@ -1,5 +1,9 @@
+@value colors: "../../commons/styles/colors.module.css";
+
+@value bodyText from colors;
+
 .filter {
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 .filter:first-child {
@@ -17,11 +21,17 @@ h3 {
 }
 
 .filterOptions {
-
+    color: bodyText
 }
 
 .filterOption {
     margin: 3px 0;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.filterOption:hover {
+    opacity: 1;
 }
 
 .filterOption:first-child {
