@@ -10,6 +10,7 @@ import AppStyles from './App.module.css';
 
 class App extends Component {
     render() {
+
         return (
             <BrowserRouter>
                 <div className={AppStyles.app}>
@@ -17,7 +18,7 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/" component={HomePage}/>
                             <Route path="/search" component={BrowsePage}/>
-                            <Route path="/products/:productId" component={ProductDetailsPage}/>
+                            <Route path="/product/:productId" component={ProductDetailsPage}/>
                             <Route path="/cart" component={CartPage}/>
                             <Redirect to="/"/>
                         </Switch>

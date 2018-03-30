@@ -41,6 +41,7 @@ class BrowsePage extends Component {
         };
 
         this.onAddToCart = this.onAddToCart.bind(this);
+        this.onProductCardSelect = this.onProductCardSelect.bind(this);
         this.productCardRenderer = this.productCardRenderer.bind(this);
     }
 
@@ -48,11 +49,16 @@ class BrowsePage extends Component {
         console.log('onAddToCart:', product);
     }
 
+    onProductCardSelect(product) {
+        console.log('onProductCardSelect:', product);
+    }
+
     productCardRenderer(product) {
         return (
             <ProductCard key={product.key}
                          product={product}
                          onAddToCart={this.onAddToCart}
+                         onProductCardSelect={this.onProductCardSelect}
             />
         );
     }
