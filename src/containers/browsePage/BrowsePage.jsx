@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import {addProductToCart} from '../../actions';
+import {fetchProducts} from '../../actions';
 import FilterBox from '../../components/filterBox';
 import List from '../../components/List';
 import ProductCard from '../../components/productCard';
@@ -33,6 +32,10 @@ class BrowsePage extends Component {
         );
     }
 
+    componentDidMount() {
+        this.props.fetchProducts();
+    }
+
     render() {
         const gridContainerClasses = cx(
             BrowsePageStyles.pageContainer,
@@ -56,6 +59,7 @@ class BrowsePage extends Component {
                     <div className={filterBoxContainerClasses}>
                         <FilterBox filterList={this.state.filterList}/>
                     </div>
+
                     <div className={contentContainerClasses}>
                         <List itemWidth="240px"
                               itemHeight="340px"
@@ -76,10 +80,14 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        addProductToCart: addProductToCart
-    }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({
+//         addProductToCart: Add_Product_To_Cart
+//     }, dispatch);
+// }
+
+let mapDispatchToProps = {
+    fetchProducts: fetchProducts
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(BrowsePage);

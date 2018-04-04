@@ -1,5 +1,11 @@
+import fetchFilters from './fetchFilters';
+import fetchProducts from './fetchProducts';
 import addProductToCart from './addProductToCart';
+import * as ActionTypes from './actionTypes';
 
 export {
-    addProductToCart
+    fetchFilters,
+    fetchProducts,
+    addProductToCart,
+    ActionTypes
 };
