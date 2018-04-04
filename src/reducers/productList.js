@@ -73,10 +73,10 @@ export default function(state = null, action) {
     ];
 
     return productList.map(product => {
-        const key = RandomGenerator.getUID();
+        const id = RandomGenerator.getUID();
 
         return {
-            key: key,
+            id: id,
             ...product,
             image: getAbsoluteImagePath(product.image)
         };

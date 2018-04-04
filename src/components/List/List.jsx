@@ -18,7 +18,7 @@ class List extends Component {
             };
 
             return (
-                <li key={item.key} className={ListStyles.listItem} style={listItemStyle}>
+                <li key={item.id} className={ListStyles.listItem} style={listItemStyle}>
                     {this.props.itemRenderer(item)}
                 </li>
             );

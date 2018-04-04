@@ -54,17 +54,17 @@ class Filter extends Component {
 
     renderFilterOptions() {
         return this.props.filter.values.map(filterOption => {
-            const key = RandomGenerator.getUID();
+            const id = RandomGenerator.getUID();
 
             return (
-                <li key={key} className={FilterStyles.filterOption}>
+                <li key={id} className={FilterStyles.filterOption}>
                     <input type="checkbox"
-                           id={key}
+                           id={id}
                            value={filterOption}
                            checked={this.isFilterOptionSelected(filterOption)}
                            onChange={this.handleFilterChange}/>
 
-                    <label htmlFor={key}>{filterOption}</label>
+                    <label htmlFor={id}>{filterOption}</label>
                 </li>
             );
         });

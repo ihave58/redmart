@@ -42,16 +42,20 @@ class UrlBuilder {
     }
 
     toString() {
+        return `${this.url}${this.toSearchString()}`;
+    }
+
+    toSearchString() {
         let paramsString = [];
 
         this.params.forEach((value, key) => {
             paramsString.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
         });
 
-        return `${this.url}?${paramsString.join('&')}`;
+        return `?${paramsString.join('&')}`;
     }
 
-    static getParam(key) {
+    static getLocationParam(key) {
         return (new URLSearchParams(window.location.search)).get(key);
     }
 }

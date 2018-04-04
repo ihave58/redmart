@@ -2,50 +2,33 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import {selectProduct} from '../../actions';
-
-import Header from '../../components/header';
+import {addProductToCart} from '../../actions';
 import FilterBox from '../../components/filterBox';
 import List from '../../components/List';
 import ProductCard from '../../components/productCard';
 
-import cx from 'classnames';
 import BrowsePageStyles from './BrowsePage.module.css';
 import GridStyles from '../../commons/styles/grid.module.css';
 
-import UrlBuilder from '../../commons/utils/urlBuilder';
+import cx from 'classnames';
 
 class BrowsePage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            searchTerm: UrlBuilder.getParam('q') || '',
             filterList: this.props.filterList,
             productList: this.props.productList
         };
 
-        this.handleAddToCart = this.handleAddToCart.bind(this);
-        this.handleProductCardSelect = this.handleProductCardSelect.bind(this);
         this.productCardRenderer = this.productCardRenderer.bind(this);
-    }
-
-    handleAddToCart(product) {
-        console.log('onAddToCart:', product);
-    }
-
-    handleProductCardSelect(product) {
-        console.log('handleProductCardSelect:', product);
-
-        this.props.selectProduct(product);
     }
 
     productCardRenderer(product) {
         return (
             <ProductCard key={product.key}
                          product={product}
-                         onAddToCart={this.handleAddToCart}
-                         onProductCardSelect={this.handleProductCardSelect}
+                         onAddProductToCart={this.props.addProductToCart}
             />
         );
     }
@@ -58,35 +41,29 @@ class BrowsePage extends Component {
             GridStyles.grid
         );
 
+        const filterBoxContainerClasses = cx(
+            BrowsePageStyles.filterBoxContainer,
+            GridStyles.gridCell
+        );
+
         const contentContainerClasses = cx(
             BrowsePageStyles.contentContainer,
             GridStyles.gridCell,
             GridStyles.col__3of4
         );
 
-        const filterBoxContainerClasses = cx(
-            BrowsePageStyles.filterBoxContainer,
-            GridStyles.gridCell
-        );
-
         return (
             <div className={BrowsePageStyles.browsePage}>
-                <div className={BrowsePageStyles.headerContainer}>
-                    <Header searchTerm={this.state.searchTerm}/>
-                </div>
-
-                <div className={BrowsePageStyles.pageContainer}>
-                    <div className={gridContainerClasses}>
-                        <div className={filterBoxContainerClasses}>
-                            <FilterBox filterList={this.state.filterList}/>
-                        </div>
-                        <div className={contentContainerClasses}>
-                            <List itemWidth="240px"
-                                  itemHeight="340px"
-                                  itemRenderer={this.productCardRenderer}
-                                  items={this.state.productList}
-                            />
-                        </div>
+                <div className={gridContainerClasses}>
+                    <div className={filterBoxContainerClasses}>
+                        <FilterBox filterList={this.state.filterList}/>
+                    </div>
+                    <div className={contentContainerClasses}>
+                        <List itemWidth="240px"
+                              itemHeight="340px"
+                              itemRenderer={this.productCardRenderer}
+                              items={this.state.productList}
+                        />
                     </div>
                 </div>
             </div>
@@ -103,7 +80,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        selectProduct
+        addProductToCart: addProductToCart
     }, dispatch);
 }
 

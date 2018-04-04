@@ -1,41 +1,58 @@
 import React, {Component} from 'react';
-import Header from '../../components/header';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-import ProductDetailsPageStyles from './ProductDetailsPage.scss';
+import ProductDetailsPageStyles from './ProductDetailsPage.module.css';
 import GridStyles from '../../commons/styles/grid.module.css';
 
 import cx from 'classnames';
-import UrlBuilder from '../../commons/utils/urlBuilder';
+import {addProductToCart} from '../../actions';
 
 class ProductDetailsPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            searchTerm: UrlBuilder.getParam('q') || ''
-        };
-
-        console.log(this.props.product);
+        // this.props.match.params.productId;
     }
 
     render() {
         const contentContainerClasses = cx(
             ProductDetailsPageStyles.contentContainer,
-            GridStyles.gridCell,
-            GridStyles.col__3of4
+            GridStyles.grid,
         );
+
+        const leftContainerClasses = cx(
+            ProductDetailsPageStyles.leftContainer,
+            GridStyles.col__1of2
+        );
+
+        const rightContainerClasses = cx(
+            ProductDetailsPageStyles.rightContainer,
+            GridStyles.col__1of2
+        );
+
+        const {name, measurement, price, desc, image} = this.props.product;
 
         return (
             <div className={ProductDetailsPageStyles.productDetailsPage}>
-                <div className={ProductDetailsPageStyles.headerContainer}>
-                    <Header/>
-                </div>
-                <div className={ProductDetailsPageStyles.pageContainer}>
-                    <div className={contentContainerClasses}>
-                        <div className={GridStyles.col__1of2}>
-                            <h3></h3>
+                <div className={contentContainerClasses}>
+                    <div className={leftContainerClasses}>
+                        <h3>{name}</h3>
+                        <div className={ProductDetailsPageStyles.imageContainer}>
+                            <img src={image} alt={desc}/>
                         </div>
-                        <div className={GridStyles.col__1of2}></div>
+                    </div>
+                    <div className={rightContainerClasses}>
+                        <div className={ProductDetailsPageStyles.measurement}>{measurement}</div>
+                        <div className={ProductDetailsPageStyles.price}>${price}</div>
+                        <div className={ProductDetailsPageStyles.description}>{desc}</div>
+
+                        <div className={ProductDetailsPageStyles.addToCartContainer}>
+                            <button className={ProductDetailsPageStyles.addToCart}
+                                    onClick={this.handleAddProductToCart}>
+                                Add to Cart
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,4 +60,17 @@ class ProductDetailsPage extends Component {
     }
 }
 
-export default ProductDetailsPage;
+
+function mapStateToProps(state) {
+    return {
+        product: state.activeProduct
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        addProductToCart: addProductToCart
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailsPage);

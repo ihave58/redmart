@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Header from '../../components/header';
 import CartPageStyles from './CartPage.module.css';
 
 class CartPage extends Component {
@@ -10,12 +9,7 @@ class CartPage extends Component {
     render() {
         return (
             <div className={CartPageStyles.cartPage}>
-                <div className={CartPageStyles.headerContainer}>
-                    <Header isSearchBoxVisible={false}/>
-                </div>
-                <div className={CartPageStyles.pageContainer}>
-                    Welcome to Cart
-                </div>
+                Welcome to Cart
             </div>
         );
     }

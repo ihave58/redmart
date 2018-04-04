@@ -1,5 +1,5 @@
-import selectProduct from './selectProduct';
+import addProductToCart from './addProductToCart';
 
 export {
-    selectProduct
+    addProductToCart
 };

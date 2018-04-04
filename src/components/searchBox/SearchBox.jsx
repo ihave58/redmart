@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import SearchBoxStyles from './SearchBox.module.css';
 
 import SearchImageIcon from './searchIcon.svg';
@@ -21,15 +23,14 @@ class SearchBox extends Component {
         this.setState({
             searchTerm: event.target.value
         });
+
+        // Will be helpful in Auto suggestion. Make API calls / action for suggestions here.
     }
 
     handleSearchSubmit(event) {
-        const params = new Map([
-            ['q', this.state.searchTerm]
-        ]);
-
         event.preventDefault();
-        this.props.onSearch(params);
+
+        this.props.onSearch(this.state.searchTerm);
     }
 
     render() {
@@ -56,10 +57,17 @@ class SearchBox extends Component {
     }
 }
 
+SearchBox.propTypes = {
+    term: PropTypes.string,
+    pathName: PropTypes.string,
+    onSearch: PropTypes.func
+};
+
 SearchBox.defaultProps = {
+    term: '',
+    pathName: '',
     onSearch: () => {
-    },
-    searchTerm: ''
+    }
 };
 
 export default SearchBox;

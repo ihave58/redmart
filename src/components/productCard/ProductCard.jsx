@@ -8,27 +8,22 @@ class ProductCard extends Component {
     constructor(props) {
         super(props);
 
-        this.handleAddToCart = this.handleAddToCart.bind(this);
-        this.handleProductCardSelect = this.handleProductCardSelect.bind(this);
+        this.handleAddProductToCart = this.handleAddProductToCart.bind(this);
     }
 
-    handleAddToCart(event) {
+    handleAddProductToCart(event) {
         event.stopPropagation();
 
-        this.props.onAddToCart(this.props.product, event);
-    }
-
-    handleProductCardSelect(event) {
-        this.props.onProductCardSelect(this.props.product, event);
+        this.props.onAddProductToCart(this.props.product, event);
     }
 
     render() {
-        const {name, image, desc, measurement, price, key} = this.props.product;
+        const {id, name, image, desc, measurement, price} = this.props.product;
 
         return (
-            <Link to={`/product/${key}`}
+            <Link to={`/product/${id}`}
                   className={ProductCardStyles.productCard}
-                  onClick={this.handleProductCardSelect}>
+                  onClick={this.props.onProductCardSelect}>
 
                 <div className={ProductCardStyles.imageContainer}>
                     <img src={image} alt={desc}/>
@@ -42,7 +37,7 @@ class ProductCard extends Component {
 
                 <div className={ProductCardStyles.addToCartContainer}>
                     <button className={ProductCardStyles.addToCart}
-                            onClick={this.onAddToCart}>
+                            onClick={this.handleAddProductToCart}>
                         Add to Cart
                     </button>
                 </div>
@@ -51,9 +46,14 @@ class ProductCard extends Component {
     }
 }
 
+ProductCard.defaultPros = {
+    onProductCardSelect: () => {
+    }
+};
+
 ProductCard.propTypes = {
-    onAddToCart: PropTypes.func.isRequired,
-    onProductCardSelect: PropTypes.func.isRequired
+    onAddProductToCart: PropTypes.func.isRequired,
+    onProductCardSelect: PropTypes.func
 };
 
 export default ProductCard;

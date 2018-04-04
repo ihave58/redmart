@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+
 import SearchBox from '../searchBox';
 
 import HeaderStyles from './Header.module.css';
@@ -6,9 +8,7 @@ import GridStyles from '../../commons/styles/grid.module.css';
 import Logo from './logo.svg';
 
 import cx from 'classnames';
-import {Link, } from 'react-router-dom';
 import {UrlBuilder} from '../../commons/utils';
-import PropTypes from 'prop-types';
 
 const buildUrl = (url, params) => (new UrlBuilder(url, params)).toString();
 
@@ -16,11 +16,38 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            searchTerm: UrlBuilder.getLocationParam('q') || ''
+        };
+
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleRouteChange = this.handleRouteChange.bind(this);
     }
 
-    handleSearch(params) {
-        window.location.href = buildUrl('/search', params);
+    handleSearch(searchTerm) {
+        const searchParams = new Map([
+            ['q', searchTerm]
+        ]);
+
+        this.setState({
+            searchTerm: searchTerm
+        });
+
+        this.navigateTo(buildUrl('/search', searchParams));
+    }
+
+    navigateTo(url) {
+        this.props.history.push(url);
+    }
+
+    handleRouteChange() {
+        this.setState({
+            searchTerm: UrlBuilder.getLocationParam('q') || ''
+        });
+    }
+
+    componentDidMount() {
+        this.props.history.listen(this.handleRouteChange);
     }
 
     render() {
@@ -35,15 +62,11 @@ class Header extends Component {
                     </Link>
                 </div>
 
-                {
-                    this.props.isSearchBoxVisible ? (
-                        <div className={cx(HeaderStyles.searchContainer, GridStyles.gridCell)}>
-                            <SearchBox searchTerm={this.props.searchTerm}
-                                       onSearch={this.handleSearch}
-                            />
-                        </div>
-                    ) : ''
-                }
+                <div className={cx(HeaderStyles.searchContainer, GridStyles.gridCell)}>
+                    <SearchBox searchTerm={this.state.searchTerm}
+                               onSearch={this.handleSearch}
+                    />
+                </div>
 
                 <div className={cx(HeaderStyles.cartContainer, GridStyles.gridCell)}>
                     <Link className={HeaderStyles.cartLink}
@@ -54,14 +77,4 @@ class Header extends Component {
     }
 }
 
-Header.defaultProps = {
-    isSearchBoxVisible: true,
-    searchTerm: ''
-};
-
-Header.propTypes = {
-    isSearchBoxVisible: PropTypes.bool,
-    searchTerm: PropTypes.string,
-};
-
-export default Header;
+export default withRouter(Header);

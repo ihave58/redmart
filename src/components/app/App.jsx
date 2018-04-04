@@ -5,6 +5,7 @@ import HomePage from '../../containers/homePage';
 import CartPage from '../../containers/cartPage';
 import BrowsePage from '../../containers/browsePage';
 import ProductDetailsPage from '../../containers/productDetailsPage';
+import Header from '../../components/header';
 
 import AppStyles from './App.module.css';
 
@@ -13,12 +14,16 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div className={AppStyles.app}>
+                    <div className={AppStyles.headerContainer}>
+                        <Header/>
+                    </div>
                     <div className={AppStyles.pageContainer}>
                         <Switch>
                             <Route exact path="/" component={HomePage}/>
                             <Route path="/search" component={BrowsePage}/>
                             <Route path="/product/:productId" component={ProductDetailsPage}/>
                             <Route path="/cart" component={CartPage}/>
+
                             <Redirect to="/"/>
                         </Switch>
                     </div>
