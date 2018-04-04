@@ -51,6 +51,12 @@ class Header extends Component {
     }
 
     render() {
+        const searchBoxContainerClasses = cx(
+            HeaderStyles.searchContainer,
+            GridStyles.gridCell,
+            GridStyles.col__1of2
+        );
+
         return (
             <div className={cx(HeaderStyles.header, GridStyles.grid)}>
                 <div className={GridStyles.gridCell}>
@@ -62,7 +68,7 @@ class Header extends Component {
                     </Link>
                 </div>
 
-                <div className={cx(HeaderStyles.searchContainer, GridStyles.gridCell)}>
+                <div className={searchBoxContainerClasses}>
                     <SearchBox searchTerm={this.state.searchTerm}
                                onSearch={this.handleSearch}
                     />
