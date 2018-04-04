@@ -33,11 +33,9 @@ class BrowsePage extends Component {
         );
     }
 
-    componentDidMount() {
-    }
-
     render() {
         const gridContainerClasses = cx(
+            BrowsePageStyles.pageContainer,
             GridStyles.grid
         );
 

@@ -12,6 +12,7 @@ class ProductCard extends Component {
     }
 
     handleAddProductToCart(event) {
+        event.preventDefault();
         event.stopPropagation();
 
         this.props.onAddProductToCart(this.props.product, event);
