@@ -8,18 +8,18 @@ class ProductCard extends Component {
     constructor(props) {
         super(props);
 
-        this.onAddToCart = this.onAddToCart.bind(this);
-        this.onProductCardSelect = this.onProductCardSelect.bind(this);
+        this.handleAddToCart = this.handleAddToCart.bind(this);
+        this.handleProductCardSelect = this.handleProductCardSelect.bind(this);
     }
 
-    onAddToCart(event) {
+    handleAddToCart(event) {
         event.stopPropagation();
 
-        this.props.onAddToCart(this.props.product);
+        this.props.onAddToCart(this.props.product, event);
     }
 
-    onProductCardSelect(event) {
-        this.props.onProductCardSelect(this.props.product);
+    handleProductCardSelect(event) {
+        this.props.onProductCardSelect(this.props.product, event);
     }
 
     render() {
@@ -28,7 +28,7 @@ class ProductCard extends Component {
         return (
             <Link to={`/product/${key}`}
                   className={ProductCardStyles.productCard}
-                  onClick={this.onProductCardSelect}>
+                  onClick={this.handleProductCardSelect}>
 
                 <div className={ProductCardStyles.imageContainer}>
                     <img src={image} alt={desc}/>
@@ -54,10 +54,6 @@ class ProductCard extends Component {
 ProductCard.propTypes = {
     onAddToCart: PropTypes.func.isRequired,
     onProductCardSelect: PropTypes.func.isRequired
-};
-
-ProductCard.defaultProps = {
-    data: []
 };
 
 export default ProductCard;

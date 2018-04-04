@@ -16,10 +16,10 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.onSearch = this.onSearch.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
-    onSearch(params) {
+    handleSearch(params) {
         window.location.href = buildUrl('/search', params);
     }
 
@@ -39,7 +39,7 @@ class Header extends Component {
                     this.props.isSearchBoxVisible ? (
                         <div className={cx(HeaderStyles.searchContainer, GridStyles.gridCell)}>
                             <SearchBox searchTerm={this.props.searchTerm}
-                                       onSearch={this.onSearch}
+                                       onSearch={this.handleSearch}
                             />
                         </div>
                     ) : ''

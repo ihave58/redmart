@@ -11,11 +11,11 @@ class SearchBox extends Component {
             searchTerm: props.searchTerm
         };
 
-        this.onSearchTermChange = this.onSearchTermChange.bind(this);
-        this.onSearchSubmit = this.onSearchSubmit.bind(this);
+        this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     }
 
-    onSearchTermChange(event) {
+    handleSearchTermChange(event) {
         event.stopPropagation();
 
         this.setState({
@@ -23,7 +23,7 @@ class SearchBox extends Component {
         });
     }
 
-    onSearchSubmit(event) {
+    handleSearchSubmit(event) {
         const params = new Map([
             ['q', this.state.searchTerm]
         ]);
@@ -35,11 +35,11 @@ class SearchBox extends Component {
     render() {
         return (
             <div className={SearchBoxStyles.search}>
-                <form onSubmit={this.onSearchSubmit}>
+                <form onSubmit={this.handleSearchSubmit}>
                     <input type="text"
                            className={SearchBoxStyles.searchBar}
                            value={this.state.searchTerm}
-                           onChange={this.onSearchTermChange}
+                           onChange={this.handleSearchTermChange}
                     />
 
                     <button type="submit"

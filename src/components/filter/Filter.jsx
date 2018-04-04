@@ -11,7 +11,7 @@ class Filter extends Component {
         };
 
         this.isFilterOptionSelected = this.isFilterOptionSelected.bind(this);
-        this.onFilterChange = this.onFilterChange.bind(this);
+        this.handleFilterChange = this.handleFilterChange.bind(this);
     }
 
     isFilterOptionSelected(filterOption) {
@@ -36,7 +36,7 @@ class Filter extends Component {
         }
     }
 
-    onFilterChange(event) {
+    handleFilterChange(event) {
         let filterOptions = this.state.filterOptions,
             isChecked = event.target.checked,
             filterOption = event.target.value;
@@ -62,7 +62,7 @@ class Filter extends Component {
                            id={key}
                            value={filterOption}
                            checked={this.isFilterOptionSelected(filterOption)}
-                           onChange={this.onFilterChange}/>
+                           onChange={this.handleFilterChange}/>
 
                     <label htmlFor={key}>{filterOption}</label>
                 </li>

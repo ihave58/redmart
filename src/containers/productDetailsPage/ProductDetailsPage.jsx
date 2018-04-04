@@ -14,6 +14,8 @@ class ProductDetailsPage extends Component {
         this.state = {
             searchTerm: UrlBuilder.getParam('q') || ''
         };
+
+        console.log(this.props.product);
     }
 
     render() {

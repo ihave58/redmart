@@ -25,17 +25,17 @@ class BrowsePage extends Component {
             productList: this.props.productList
         };
 
-        this.onAddToCart = this.onAddToCart.bind(this);
-        this.onProductCardSelect = this.onProductCardSelect.bind(this);
+        this.handleAddToCart = this.handleAddToCart.bind(this);
+        this.handleProductCardSelect = this.handleProductCardSelect.bind(this);
         this.productCardRenderer = this.productCardRenderer.bind(this);
     }
 
-    onAddToCart(product) {
+    handleAddToCart(product) {
         console.log('onAddToCart:', product);
     }
 
-    onProductCardSelect(product) {
-        console.log('onProductCardSelect:', product);
+    handleProductCardSelect(product) {
+        console.log('handleProductCardSelect:', product);
 
         this.props.selectProduct(product);
     }
@@ -44,8 +44,8 @@ class BrowsePage extends Component {
         return (
             <ProductCard key={product.key}
                          product={product}
-                         onAddToCart={this.onAddToCart}
-                         onProductCardSelect={this.onProductCardSelect}
+                         onAddToCart={this.handleAddToCart}
+                         onProductCardSelect={this.handleProductCardSelect}
             />
         );
     }
