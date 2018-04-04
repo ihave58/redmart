@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Header from '../header';
+import Header from '../../components/header';
 import CartPageStyles from './CartPage.module.css';
 
 class CartPage extends Component {

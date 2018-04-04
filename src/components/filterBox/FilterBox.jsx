@@ -7,13 +7,13 @@ class FilterBox extends Component {
         super(props);
 
         this.state = {
-            filters: []
+            filterList: []
         };
 
     }
 
-    renderFilters() {
-        return this.props.filters.map(filter => {
+    renderFilterList() {
+        return this.props.filterList.map(filter => {
             return (
                 <Filter key={filter.name}
                         filter={filter}
@@ -25,7 +25,7 @@ class FilterBox extends Component {
     render() {
         return (
             <div className={FilterBoxStyles.filterBox}>
-                {this.renderFilters()}
+                {this.renderFilterList()}
             </div>
         );
     }

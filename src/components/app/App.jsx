@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 
-import HomePage from '../homePage';
-import CartPage from '../cartPage';
-import BrowsePage from '../browsePage';
-import ProductDetailsPage from '../productDetailsPage';
+import HomePage from '../../containers/homePage';
+import CartPage from '../../containers/cartPage';
+import BrowsePage from '../../containers/browsePage';
+import ProductDetailsPage from '../../containers/productDetailsPage';
 
 import AppStyles from './App.module.css';
 
 class App extends Component {
     render() {
-
         return (
             <BrowserRouter>
                 <div className={AppStyles.app}>

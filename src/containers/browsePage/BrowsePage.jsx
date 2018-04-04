@@ -1,36 +1,19 @@
 import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-import Header from '../header';
-import FilterBox from '../filterBox';
-import List from '../List';
-import ProductCard from '../productCard';
-import {RandomGenerator} from '../../commons/utils';
+import {selectProduct} from '../../actions';
+
+import Header from '../../components/header';
+import FilterBox from '../../components/filterBox';
+import List from '../../components/List';
+import ProductCard from '../../components/productCard';
 
 import cx from 'classnames';
 import BrowsePageStyles from './BrowsePage.module.css';
 import GridStyles from '../../commons/styles/grid.module.css';
-import data from '../../mock/data';
+
 import UrlBuilder from '../../commons/utils/urlBuilder';
-
-const getAbsoluteImagePath = imageName => {
-    return `/static/assets/${imageName}`;
-};
-
-const fetchProducts = () => {
-    return data.products.map(product => {
-        const key = RandomGenerator.getUID();
-
-        return {
-            key: key,
-            ...product,
-            image: getAbsoluteImagePath(product.image)
-        };
-    });
-};
-
-const fetchFilters = () => {
-    return data.filters;
-};
 
 class BrowsePage extends Component {
     constructor(props) {
@@ -38,8 +21,8 @@ class BrowsePage extends Component {
 
         this.state = {
             searchTerm: UrlBuilder.getParam('q') || '',
-            filters: [],
-            products: []
+            filterList: this.props.filterList,
+            productList: this.props.productList
         };
 
         this.onAddToCart = this.onAddToCart.bind(this);
@@ -53,6 +36,8 @@ class BrowsePage extends Component {
 
     onProductCardSelect(product) {
         console.log('onProductCardSelect:', product);
+
+        this.props.selectProduct(product);
     }
 
     productCardRenderer(product) {
@@ -66,10 +51,6 @@ class BrowsePage extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            filters: fetchFilters(),
-            products: fetchProducts()
-        });
     }
 
     render() {
@@ -97,13 +78,13 @@ class BrowsePage extends Component {
                 <div className={BrowsePageStyles.pageContainer}>
                     <div className={gridContainerClasses}>
                         <div className={filterBoxContainerClasses}>
-                            <FilterBox filters={this.state.filters}/>
+                            <FilterBox filterList={this.state.filterList}/>
                         </div>
                         <div className={contentContainerClasses}>
                             <List itemWidth="240px"
                                   itemHeight="340px"
                                   itemRenderer={this.productCardRenderer}
-                                  items={this.state.products}
+                                  items={this.state.productList}
                             />
                         </div>
                     </div>
@@ -113,4 +94,17 @@ class BrowsePage extends Component {
     }
 }
 
-export default BrowsePage;
+function mapStateToProps(state) {
+    return {
+        filterList: state.filterList,
+        productList: state.productList
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        selectProduct
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BrowsePage);

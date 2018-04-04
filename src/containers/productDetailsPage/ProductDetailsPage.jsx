@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Header from '../header';
+import Header from '../../components/header';
 
 import ProductDetailsPageStyles from './ProductDetailsPage.scss';
 import GridStyles from '../../commons/styles/grid.module.css';
