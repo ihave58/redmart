@@ -12,11 +12,12 @@ class SearchBox extends Component {
         };
 
         this.onSearchTermChange = this.onSearchTermChange.bind(this);
-        this.onSearchButtonClick = this.onSearchButtonClick.bind(this);
         this.onSearchSubmit = this.onSearchSubmit.bind(this);
     }
 
     onSearchTermChange(event) {
+        event.stopPropagation();
+
         this.setState({
             searchTerm: event.target.value
         });
@@ -31,22 +32,19 @@ class SearchBox extends Component {
         this.props.onSearch(params);
     }
 
-    onSearchButtonClick(event) {
-        this.onSearchSubmit(event);
-    }
-
     render() {
         return (
             <div className={SearchBoxStyles.search}>
                 <form onSubmit={this.onSearchSubmit}>
-                    <input className={SearchBoxStyles.searchBar}
+                    <input type="text"
+                           className={SearchBoxStyles.searchBar}
                            value={this.state.searchTerm}
                            onChange={this.onSearchTermChange}
-                           type="text"/>
+                    />
 
-                    <button
-                        className={SearchBoxStyles.searchButton}
-                        onClick={this.onSearchButtonClick}>
+                    <button type="submit"
+                            className={SearchBoxStyles.searchButton}>
+
                         <img width="20px" height="20px" alt="search-icon"
                              className={SearchBoxStyles.searchIcon}
                              src={SearchImageIcon}
@@ -57,5 +55,11 @@ class SearchBox extends Component {
         );
     }
 }
+
+SearchBox.defaultProps = {
+    onSearch: () => {
+    },
+    searchTerm: ''
+};
 
 export default SearchBox;

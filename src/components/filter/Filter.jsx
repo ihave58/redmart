@@ -58,7 +58,9 @@ class Filter extends Component {
 
             return (
                 <li key={key} className={FilterStyles.filterOption}>
-                    <input type="checkbox" id={key} value={filterOption}
+                    <input type="checkbox"
+                           id={key}
+                           value={filterOption}
                            checked={this.isFilterOptionSelected(filterOption)}
                            onChange={this.onFilterChange}/>
 

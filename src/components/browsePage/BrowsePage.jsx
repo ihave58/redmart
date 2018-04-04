@@ -10,6 +10,7 @@ import cx from 'classnames';
 import BrowsePageStyles from './BrowsePage.module.css';
 import GridStyles from '../../commons/styles/grid.module.css';
 import data from '../../mock/data';
+import UrlBuilder from '../../commons/utils/urlBuilder';
 
 const getAbsoluteImagePath = imageName => {
     return `/static/assets/${imageName}`;
@@ -20,8 +21,8 @@ const fetchProducts = () => {
         const key = RandomGenerator.getUID();
 
         return {
-            ...product,
             key: key,
+            ...product,
             image: getAbsoluteImagePath(product.image)
         };
     });
@@ -36,6 +37,7 @@ class BrowsePage extends Component {
         super(props);
 
         this.state = {
+            searchTerm: UrlBuilder.getParam('q') || '',
             filters: [],
             products: []
         };
@@ -89,7 +91,7 @@ class BrowsePage extends Component {
         return (
             <div className={BrowsePageStyles.browsePage}>
                 <div className={BrowsePageStyles.headerContainer}>
-                    <Header/>
+                    <Header searchTerm={this.state.searchTerm}/>
                 </div>
 
                 <div className={BrowsePageStyles.pageContainer}>
