@@ -1,6 +1,4 @@
-@value colors: "../../commons/styles/colors.module.css";
-
-@value bodyText, primaryWhite, buttonBackground, buttonBackgroundOnHover from colors;
+@value bodyText, primaryWhite, buttonBackground, buttonBackgroundOnHover from "../../commons/styles/colors.module.css";
 
 .productCard {
     display: flex;
@@ -41,13 +39,13 @@
     font-weight: bold;
 }
 
-.addToCartContainer {
+.addAndRemoveToCartContainer {
 
 }
 
-.addToCart {
-    height: 44px;
-    width: 140px;
+.addToCart,
+.removeFromCart {
+    padding: 10px 20px;
     font-size: 1em;
     border: none;
 
@@ -56,7 +54,8 @@
     color: primaryWhite;
 }
 
-.addToCart:hover {
+.addToCart:hover,
+.removeFromCart:hover {
     background: buttonBackgroundOnHover;
     cursor: pointer;
 }

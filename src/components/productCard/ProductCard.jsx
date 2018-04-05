@@ -18,6 +18,24 @@ class ProductCard extends Component {
         this.props.onAddProductToCart(this.props.product, event);
     }
 
+    renderAddToCartButton() {
+        return (
+            <button className={ProductCardStyles.addToCart}
+                    onClick={this.handleAddProductToCart}>
+                Add to Cart
+            </button>
+        );
+    }
+
+    renderRemoveFromCartButton() {
+        return (
+            <button className={ProductCardStyles.removeFromCart}
+                    onClick={this.handleAddProductToCart}>
+                Remove from Cart
+            </button>
+        );
+    }
+
     render() {
         const {id, name, image, desc, measurement, price} = this.props.product;
 
@@ -36,25 +54,37 @@ class ProductCard extends Component {
                     <div className={ProductCardStyles.price}>${price}</div>
                 </div>
 
-                <div className={ProductCardStyles.addToCartContainer}>
-                    <button className={ProductCardStyles.addToCart}
-                            onClick={this.handleAddProductToCart}>
-                        Add to Cart
-                    </button>
+                <div className={ProductCardStyles.addAndRemoveToCartContainer}>
+                    {
+                        this.props.toShowAddProductToCart
+                            ? this.renderAddToCartButton()
+                            : null
+                    }
+                    {
+                        this.props.toShowRemoveProductFromCart
+                            ? this.renderRemoveFromCartButton()
+                            : null
+                    }
                 </div>
             </Link>
         );
     }
 }
 
-ProductCard.defaultPros = {
+ProductCard.defaultProps = {
+    toShowAddProductToCart: true,
+    toShowRemoveProductFromCart: false,
     onProductCardSelect: () => {
+    },
+    onAddProductToCart: () => {
     }
 };
 
 ProductCard.propTypes = {
-    onAddProductToCart: PropTypes.func.isRequired,
-    onProductCardSelect: PropTypes.func
+    onAddProductToCart: PropTypes.func,
+    onProductCardSelect: PropTypes.func,
+    toShowAddProductToCart: PropTypes.bool,
+    toShowRemoveProductFromCart: PropTypes.bool
 };
 
 export default ProductCard;
