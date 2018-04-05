@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import ListStyles from './List.module.css';
 
 class List extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     renderListItems() {
         return this.props.items.map(item => {

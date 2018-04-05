@@ -13,7 +13,23 @@ export default function fetchProductList(searchCriteria = {appliedFilters: []}) 
             axios.get(urlBuilder.toString()).then(response => {
                 let productList = response.data;
 
-                if(searchCriteria.appliedFilters.length) {
+                if(Array.isArray(searchCriteria.productIds)) {
+                    productList = productList.filter(product => {
+                        let toFilterIn = false;
+
+                        for(let productId of searchCriteria.productIds) {
+                            toFilterIn = (product.id === productId);
+
+                            if(toFilterIn) {
+                                break;
+                            }
+                        }
+
+                        return toFilterIn;
+                    });
+                }
+
+                if(searchCriteria && searchCriteria.appliedFilters && searchCriteria.appliedFilters.length) {
                     productList = productList.filter(product => {
                         let toFilterIn = false;
 

@@ -8,20 +8,27 @@ class ProductCard extends Component {
     constructor(props) {
         super(props);
 
-        this.handleAddProductToCart = this.handleAddProductToCart.bind(this);
+        this.handleAddToCart = this.handleAddToCart.bind(this);
+        this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
     }
 
-    handleAddProductToCart(event) {
+    handleAddToCart(event) {
         event.preventDefault();
-        event.stopPropagation();
 
-        this.props.onAddProductToCart(this.props.product, event);
+        this.props.onAddToCart(this.props.product, event);
+    }
+
+    handleRemoveFromCart(event) {
+        event.preventDefault();
+
+        this.props.onRemoveFromCart(this.props.product, event);
     }
 
     renderAddToCartButton() {
         return (
             <button className={ProductCardStyles.addToCart}
-                    onClick={this.handleAddProductToCart}>
+                    onClick={this.handleAddToCart}
+                    disabled={this.props.isAddToCartDisabled}>
                 Add to Cart
             </button>
         );
@@ -30,7 +37,7 @@ class ProductCard extends Component {
     renderRemoveFromCartButton() {
         return (
             <button className={ProductCardStyles.removeFromCart}
-                    onClick={this.handleAddProductToCart}>
+                    onClick={this.handleRemoveFromCart}>
                 Remove from Cart
             </button>
         );
@@ -41,8 +48,7 @@ class ProductCard extends Component {
 
         return (
             <Link to={`/product/${id}`}
-                  className={ProductCardStyles.productCard}
-                  onClick={this.props.onProductCardSelect}>
+                  className={ProductCardStyles.productCard}>
 
                 <div className={ProductCardStyles.imageContainer}>
                     <img src={image} alt={desc}/>
@@ -56,12 +62,12 @@ class ProductCard extends Component {
 
                 <div className={ProductCardStyles.addAndRemoveToCartContainer}>
                     {
-                        this.props.toShowAddProductToCart
+                        this.props.toShowAddToCart
                             ? this.renderAddToCartButton()
                             : null
                     }
                     {
-                        this.props.toShowRemoveProductFromCart
+                        this.props.toShowRemoveFromCart
                             ? this.renderRemoveFromCartButton()
                             : null
                     }
@@ -72,19 +78,21 @@ class ProductCard extends Component {
 }
 
 ProductCard.defaultProps = {
-    toShowAddProductToCart: true,
-    toShowRemoveProductFromCart: false,
-    onProductCardSelect: () => {
+    toShowAddToCart: true,
+    toShowRemoveFromCart: false,
+    isAddToCartDisabled: false,
+    onRemoveFromCart: () => {
     },
-    onAddProductToCart: () => {
+    onAddToCart: () => {
     }
 };
 
 ProductCard.propTypes = {
-    onAddProductToCart: PropTypes.func,
-    onProductCardSelect: PropTypes.func,
-    toShowAddProductToCart: PropTypes.bool,
-    toShowRemoveProductFromCart: PropTypes.bool
+    onAddToCart: PropTypes.func,
+    onRemoveFromCart: PropTypes.func,
+    toShowAddToCart: PropTypes.bool,
+    toShowRemoveFromCart: PropTypes.bool,
+    isAddToCartDisabled: PropTypes.bool
 };
 
 export default ProductCard;

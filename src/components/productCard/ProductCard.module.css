@@ -1,4 +1,4 @@
-@value bodyText, primaryWhite, buttonBackground, buttonBackgroundOnHover from "../../commons/styles/colors.module.css";
+@value bodyText, primaryWhite, buttonBackground, buttonBackgroundOnHover, buttonBackgroundOnDisabled from "../../commons/styles/colors.module.css";
 
 .productCard {
     display: flex;
@@ -58,4 +58,8 @@
 .removeFromCart:hover {
     background: buttonBackgroundOnHover;
     cursor: pointer;
+}
+
+.addToCart:disabled {
+    background: buttonBackgroundOnDisabled;
 }

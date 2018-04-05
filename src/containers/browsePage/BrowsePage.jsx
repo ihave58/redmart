@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import {addProductToCart, fetchFilterList, fetchProductList} from '../../actions';
+import {addToCart, fetchFilterList, fetchProductList, removeFromCart} from '../../actions';
 import FilterList from '../../components/filterList';
 import List from '../../components/List';
 import ProductCard from '../../components/productCard';
@@ -12,23 +12,22 @@ import GridStyles from '../../commons/styles/grid.module.css';
 import CommonStyles from '../../commons/styles/common.module.css';
 
 import cx from 'classnames';
+import {LocalStorage} from '../../commons/utils';
+
+const _cartKey = 'cartItems';
+const isProductInCart = (product) => {
+    const cartItems = LocalStorage.get(_cartKey) || [];
+
+    return (cartItems.indexOf(product.id) >= 0);
+};
 
 class BrowsePage extends Component {
     constructor(props) {
         super(props);
 
+        this.handleAddToCart = this.handleAddToCart.bind(this);
         this.productCardRenderer = this.productCardRenderer.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
-    }
-
-    productCardRenderer(product) {
-        return (
-            <ProductCard
-                key={product.key}
-                product={product}
-                onAddProductToCart={this.props.addProductToCart}
-            />
-        );
     }
 
     componentDidMount() {
@@ -40,6 +39,23 @@ class BrowsePage extends Component {
         this.props.fetchProductList({
             appliedFilters
         });
+    }
+
+    handleAddToCart(product, event) {
+        event.target.disabled = true;
+
+        this.props.addToCart(product);
+    }
+
+    productCardRenderer(product) {
+        return (
+            <ProductCard
+                key={product.key}
+                product={product}
+                onAddToCart={this.handleAddToCart}
+                isAddToCartDisabled={isProductInCart(product)}
+            />
+        );
     }
 
     render() {
@@ -94,7 +110,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        addProductToCart,
+        addToCart,
+        removeFromCart,
         fetchProductList,
         fetchFilterList
     }, dispatch);

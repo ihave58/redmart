@@ -1,7 +1,9 @@
 import UrlBuilder from './urlBuilder';
-import RandomGenerator from "./randomGenerator";
+import RandomGenerator from './randomGenerator';
+import LocalStorage from './localStorage';
 
 export {
     UrlBuilder,
-    RandomGenerator
+    RandomGenerator,
+    LocalStorage
 };

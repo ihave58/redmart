@@ -3,23 +3,40 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import cx from 'classnames';
-import {fetchProductList} from '../../actions';
+import {fetchProductList, removeFromCart} from '../../actions';
 
+import {LocalStorage} from '../../commons/utils';
 import ProductCard from '../../components/productCard';
 import List from '../../components/List';
 
 import CartPageStyles from './CartPage.module.css';
 import CommonStyles from '../../commons/styles/common.module.css';
 
+const _cartKey = 'cartItems';
+
 class CartPage extends Component {
     constructor(props) {
         super(props);
 
         this.productCardRenderer = this.productCardRenderer.bind(this);
+        this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
     }
 
     componentDidMount() {
-        this.props.fetchProductList();
+        const cartItems = LocalStorage.get(_cartKey);
+
+        this.props.fetchProductList({
+            productIds: cartItems
+        });
+    }
+
+    handleRemoveFromCart(product) {
+        this.props.removeFromCart(product);
+
+        const cartItems = LocalStorage.get(_cartKey);
+        this.props.fetchProductList({
+            productIds: cartItems
+        });
     }
 
     productCardRenderer(product) {
@@ -27,8 +44,9 @@ class CartPage extends Component {
             <ProductCard
                 key={product.key}
                 product={product}
-                toShowAddProductToCart={false}
-                toShowRemoveProductFromCart={true}
+                toShowAddToCart={false}
+                toShowRemoveFromCart={true}
+                onRemoveFromCart={this.handleRemoveFromCart}
             />
         );
     }
@@ -62,7 +80,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        fetchProductList,
+        removeFromCart,
+        fetchProductList
     }, dispatch);
 }
 

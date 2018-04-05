@@ -1,7 +1,9 @@
 import fetchProduct from './fetchProduct';
 import fetchProductList from './fetchProductList';
 import fetchFilterList from './fetchFilterList';
-import addProductToCart from './addProductToCart';
+import addToCart from './addToCart';
+import removeFromCart from './removeFromCart';
+
 import * as ActionTypes from './actionTypes';
 
 export {
@@ -9,5 +11,6 @@ export {
     fetchProduct,
     fetchProductList,
     fetchFilterList,
-    addProductToCart
+    addToCart,
+    removeFromCart
 };

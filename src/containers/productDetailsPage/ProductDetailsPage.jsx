@@ -6,7 +6,7 @@ import ProductDetailsPageStyles from './ProductDetailsPage.module.css';
 import GridStyles from '../../commons/styles/grid.module.css';
 
 import cx from 'classnames';
-import {addProductToCart, fetchProduct} from '../../actions';
+import {addToCart, fetchProduct} from '../../actions';
 
 class ProductDetailsPage extends Component {
     constructor(props) {
@@ -60,7 +60,7 @@ class ProductDetailsPage extends Component {
 
                     <div className={ProductDetailsPageStyles.addToCartContainer}>
                         <button className={ProductDetailsPageStyles.addToCart}
-                                onClick={this.handleAddProductToCart}>
+                                onClick={this.handleAddToCart}>
                             Add to Cart
                         </button>
                     </div>
@@ -91,7 +91,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        addProductToCart,
+        addToCart,
         fetchProduct
     }, dispatch);
 }
