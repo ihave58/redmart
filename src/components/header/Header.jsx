@@ -45,6 +45,10 @@ class Header extends Component {
         this.props.history.goBack();
     }
 
+    toHideBackButton() {
+        return RegExp(/\/(search)|^\/$/mgi).test(this.props.location.pathname);
+    };
+
     handleBackToYourSearch(event) {
         event.preventDefault();
 
@@ -97,9 +101,13 @@ class Header extends Component {
 
                 <div className={toolBarContainerClasses}>
                     <div className={toolBarClasses}>
-                        <a href=""
-                           className={HeaderStyles.searchLink}
-                           onClick={this.handleBackToYourSearch}> {'<'} Back to my Search</a>
+                        {
+                            this.toHideBackButton() ? null : (
+                                <a href=""
+                                   className={HeaderStyles.searchLink}
+                                   onClick={this.handleBackToYourSearch}> {'<'} Back to my Search</a>
+                            )
+                        }
 
                         <Link className={HeaderStyles.cartLink}
                               to="/cart">My Cart</Link>
