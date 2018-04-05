@@ -1,6 +1,6 @@
 @value colors: "../../commons/styles/colors.module.css";
 
-@value bodyText, backgroundWhite, buttonBackground, buttonBackgroundOnHover, borderGrey from colors;
+@value bodyText, primaryWhite, buttonBackground, buttonBackgroundOnHover, borderGrey from colors;
 
 .productDetailsPage {
     padding: 10px;
@@ -56,7 +56,7 @@
 
     background: buttonBackground;
     border-radius: 4px;
-    color: backgroundWhite;
+    color: primaryWhite;
 }
 
 .addToCart:hover {

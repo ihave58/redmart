@@ -1,4 +1,3 @@
-import {RandomGenerator} from '../commons/utils';
 import {ActionTypes} from '../actions';
 
 const getAbsoluteImagePath = imageName => {
@@ -6,18 +5,15 @@ const getAbsoluteImagePath = imageName => {
 };
 
 export default function(state = [], action) {
-    switch (action.type) {
+    switch(action.type) {
         case ActionTypes.Fetch_Products:
-            return action.request.then(response => {
-                return response.data.map(product => {
-                    const id = RandomGenerator.getUID();
+            const products = action.payload;
 
-                    return {
-                        id: id,
-                        ...product,
-                        image: getAbsoluteImagePath(product.image)
-                    };
-                });
+            return products.map(product => {
+                return {
+                    ...product,
+                    image: getAbsoluteImagePath(product.image)
+                };
             });
 
         default:

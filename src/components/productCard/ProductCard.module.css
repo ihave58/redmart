@@ -1,6 +1,6 @@
 @value colors: "../../commons/styles/colors.module.css";
 
-@value bodyText, backgroundWhite, buttonBackground, buttonBackgroundOnHover from colors;
+@value bodyText, primaryWhite, buttonBackground, buttonBackgroundOnHover from colors;
 
 .productCard {
     display: flex;
@@ -53,7 +53,7 @@
 
     background: buttonBackground;
     border-radius: 4px;
-    color: backgroundWhite;
+    color: primaryWhite;
 }
 
 .addToCart:hover {

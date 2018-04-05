@@ -22,6 +22,7 @@ class Header extends Component {
 
         this.handleSearch = this.handleSearch.bind(this);
         this.handleRouteChange = this.handleRouteChange.bind(this);
+        this.handleBackToYourSearch = this.handleBackToYourSearch.bind(this);
     }
 
     handleSearch(searchTerm) {
@@ -38,6 +39,16 @@ class Header extends Component {
 
     navigateTo(url) {
         this.props.history.push(url);
+    }
+
+    navigateBack() {
+        this.props.history.goBack();
+    }
+
+    handleBackToYourSearch(event) {
+        event.preventDefault();
+
+        this.navigateBack();
     }
 
     handleRouteChange() {
@@ -57,6 +68,16 @@ class Header extends Component {
             GridStyles.col__1of2
         );
 
+        const toolBarContainerClasses = cx(
+            HeaderStyles.toolBarContainer,
+            GridStyles.gridCell
+        );
+
+        const toolBarClasses = cx(
+            HeaderStyles.toolbar,
+            GridStyles.grid
+        );
+
         return (
             <div className={cx(HeaderStyles.header, GridStyles.grid)}>
                 <div className={GridStyles.gridCell}>
@@ -74,9 +95,15 @@ class Header extends Component {
                     />
                 </div>
 
-                <div className={cx(HeaderStyles.cartContainer, GridStyles.gridCell)}>
-                    <Link className={HeaderStyles.cartLink}
-                          to="/cart">Cart</Link>
+                <div className={toolBarContainerClasses}>
+                    <div className={toolBarClasses}>
+                        <a href=""
+                           className={HeaderStyles.searchLink}
+                           onClick={this.handleBackToYourSearch}> {'<'} Back to your Search</a>
+
+                        <Link className={HeaderStyles.cartLink}
+                              to="/cart">Cart</Link>
+                    </div>
                 </div>
             </div>
         );

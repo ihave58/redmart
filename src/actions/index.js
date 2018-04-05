@@ -1,11 +1,13 @@
-import fetchFilters from './fetchFilters';
-import fetchProducts from './fetchProducts';
+import fetchProduct from './fetchProduct';
+import fetchProductList from './fetchProductList';
+import fetchFilterList from './fetchFilterList';
 import addProductToCart from './addProductToCart';
 import * as ActionTypes from './actionTypes';
 
 export {
-    fetchFilters,
-    fetchProducts,
-    addProductToCart,
-    ActionTypes
+    ActionTypes,
+    fetchProduct,
+    fetchProductList,
+    fetchFilterList,
+    addProductToCart
 };

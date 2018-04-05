@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import {fetchProducts} from '../../actions';
-import FilterBox from '../../components/filterBox';
+import {addProductToCart, fetchProductList} from '../../actions';
+import FilterList from '../../components/filterList';
 import List from '../../components/List';
 import ProductCard from '../../components/productCard';
 
@@ -14,11 +15,6 @@ import cx from 'classnames';
 class BrowsePage extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            filterList: this.props.filterList,
-            productList: this.props.productList
-        };
 
         this.productCardRenderer = this.productCardRenderer.bind(this);
     }
@@ -33,7 +29,7 @@ class BrowsePage extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchProducts();
+        this.props.fetchProductList();
     }
 
     render() {
@@ -57,14 +53,14 @@ class BrowsePage extends Component {
             <div className={BrowsePageStyles.browsePage}>
                 <div className={gridContainerClasses}>
                     <div className={filterBoxContainerClasses}>
-                        <FilterBox filterList={this.state.filterList}/>
+                        <FilterList filterList={this.props.filterList}/>
                     </div>
 
                     <div className={contentContainerClasses}>
                         <List itemWidth="240px"
                               itemHeight="340px"
                               itemRenderer={this.productCardRenderer}
-                              items={this.state.productList}
+                              items={this.props.productList}
                         />
                     </div>
                 </div>
@@ -80,14 +76,11 @@ function mapStateToProps(state) {
     };
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({
-//         addProductToCart: Add_Product_To_Cart
-//     }, dispatch);
-// }
-
-let mapDispatchToProps = {
-    fetchProducts: fetchProducts
-};
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        addProductToCart,
+        fetchProductList
+    }, dispatch);
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(BrowsePage);

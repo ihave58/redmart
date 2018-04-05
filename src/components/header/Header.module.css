@@ -1,6 +1,6 @@
 @value colors: "../../commons/styles/colors.module.css";
 
-@value brandPink, backgroundWhite, borderGreyOnHover from colors;
+@value brandPink, primaryWhite, borderGreyOnHover, fore from colors;
 
 .header {
     background: brandPink;
@@ -18,7 +18,7 @@
 }
 
 .logo {
-    fill: backgroundWhite;
+    fill: primaryWhite;
     display: block;
 }
 
@@ -28,17 +28,34 @@
     display: flex;
 }
 
-.cartContainer {
+.toolBarContainer {
+}
+
+.toolbar {
+    height: 100%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.searchLink {
+    color: primaryWhite;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.searchLink:hover {
+    opacity: 1;
 }
 
 .cartLink {
     float: right;
-    margin-top: 5px;
+    margin: 0 0 0 10px;
     text-decoration: none;
     display: inline-block;
     padding: 8px 25px;
-    color: backgroundWhite;
-    border: 1px solid backgroundWhite;
+    color: primaryWhite;
+    border: 1px solid primaryWhite;
     border-radius: 3px;
     font-size: 1.1em;
 }

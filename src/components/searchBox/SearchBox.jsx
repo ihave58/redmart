@@ -38,6 +38,7 @@ class SearchBox extends Component {
             <div className={SearchBoxStyles.search}>
                 <form onSubmit={this.handleSearchSubmit}>
                     <input type="text"
+                           placeholder="Search for a product or brand"
                            className={SearchBoxStyles.searchBar}
                            value={this.state.searchTerm}
                            onChange={this.handleSearchTermChange}

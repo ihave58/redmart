@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import FilterBoxStyles from './FilterBox.module.css';
+import FilterListStyles from './FilterList.module.css';
 import Filter from '../filter';
 
-class FilterBox extends Component {
+class FilterList extends Component {
     constructor(props) {
         super(props);
 
@@ -24,11 +24,11 @@ class FilterBox extends Component {
 
     render() {
         return (
-            <div className={FilterBoxStyles.filterBox}>
+            <div className={FilterListStyles.filterBox}>
                 {this.renderFilterList()}
             </div>
         );
     }
 }
 
-export default FilterBox;
+export default FilterList;
