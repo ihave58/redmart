@@ -12,11 +12,13 @@ class ProductDetailsPage extends Component {
     constructor(props) {
         super(props);
 
-        this.productId = Number(this.props.match.params.productId);
+        this.state = {
+            productId: Number(this.props.match.params.productId)
+        };
     }
 
     componentDidMount() {
-        this.props.fetchProduct(this.productId);
+        this.props.fetchProduct(this.state.productId);
     }
 
     renderLoader() {

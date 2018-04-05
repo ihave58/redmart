@@ -99,10 +99,10 @@ class Header extends Component {
                     <div className={toolBarClasses}>
                         <a href=""
                            className={HeaderStyles.searchLink}
-                           onClick={this.handleBackToYourSearch}> {'<'} Back to your Search</a>
+                           onClick={this.handleBackToYourSearch}> {'<'} Back to my Search</a>
 
                         <Link className={HeaderStyles.cartLink}
-                              to="/cart">Cart</Link>
+                              to="/cart">My Cart</Link>
                     </div>
                 </div>
             </div>

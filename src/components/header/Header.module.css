@@ -1,8 +1,7 @@
-@value colors: "../../commons/styles/colors.module.css";
-
-@value brandPink, primaryWhite, borderGreyOnHover, fore from colors;
+@value brandPink, primaryWhite, borderGreyOnHover, fore from "../../commons/styles/colors.module.css";
 
 .header {
+    color: primaryWhite;
     background: brandPink;
     padding: 0 10px;
     height: 45px;
@@ -11,10 +10,12 @@
 
 .logoContainer {
     display: inline-block;
+    opacity: 0.9;
 }
 
 .logoContainer:hover {
-    background: RED;
+    opacity: 1;
+
 }
 
 .logo {
@@ -53,8 +54,8 @@
     margin: 0 0 0 10px;
     text-decoration: none;
     display: inline-block;
-    padding: 8px 25px;
-    color: primaryWhite;
+    padding: 6px 20px;
+    opacity: 0.8;
     border: 1px solid primaryWhite;
     border-radius: 3px;
     font-size: 1.1em;
@@ -62,5 +63,4 @@
 
 .cartLink:hover {
     opacity: 1;
-    border: 1px solid borderGreyOnHover;
 }

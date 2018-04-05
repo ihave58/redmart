@@ -1,3 +1,5 @@
+@value bodyBackground from "../../commons/styles/colors.module.css";
+
 .app {
 
 }
@@ -7,5 +9,5 @@
 }
 
 .pageContainer {
-
+    background: bodyBackground;
 }

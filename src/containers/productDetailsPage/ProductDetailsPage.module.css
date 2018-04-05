@@ -1,6 +1,4 @@
-@value colors: "../../commons/styles/colors.module.css";
-
-@value bodyText, primaryWhite, buttonBackground, buttonBackgroundOnHover, borderGrey from colors;
+@value bodyText, primaryWhite, buttonBackground, buttonBackgroundOnHover, borderGrey from "../../commons/styles/colors.module.css";
 
 .productDetailsPage {
     padding: 10px;
@@ -26,22 +24,22 @@
     text-align: center;
 }
 
-.price,
-.measurement,
-.description {
+.measurement {
     font-size: 1.2em;
 }
 
-.measurement {
+.description {
 
 }
 
 .price {
+    font-size: 1.2em;
     margin: 15px 0 0 0;
 }
 
 .description {
     margin: 15px 0 0 0;
+    font-weight: 300;
 }
 
 .addToCartContainer {

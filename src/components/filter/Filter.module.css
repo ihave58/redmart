@@ -1,9 +1,7 @@
-@value colors: "../../commons/styles/colors.module.css";
-
-@value bodyText from colors;
+@value bodyText from "../../commons/styles/colors.module.css";
 
 .filter {
-    margin: 30px 0;
+    margin: 40px 0;
 }
 
 .filter:first-child {
@@ -20,29 +18,36 @@ h3 {
     font-weight: 300;
 }
 
-.filterOptions {
+.filterValues {
     color: bodyText
 }
 
-.filterOption {
-    margin: 3px 0;
+.filterValue {
+    position: relative;
+    margin: 10px 0;
     cursor: pointer;
     opacity: 0.8;
 }
 
-.filterOption:hover {
+.filterValue:hover {
     opacity: 1;
 }
 
-.filterOption:first-child {
+.filterValue:first-child {
     margin-top: 0;
 }
 
-.filterOption:last-child {
+.filterValue:last-child {
     margin-bottom: 0;
 }
 
-label {
-    margin: 0 0 0 6px;
+.filterSelection {
+    position: absolute;
+    top: 3px;
+}
+
+.filterText {
+    display: block;
+    margin: 0 0 0 18px;
     user-select: none;
 }

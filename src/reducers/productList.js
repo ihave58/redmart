@@ -6,10 +6,10 @@ const getAbsoluteImagePath = imageName => {
 
 export default function(state = [], action) {
     switch(action.type) {
-        case ActionTypes.Fetch_Products:
-            const products = action.payload;
+        case ActionTypes.Fetch_ProductList:
+            const productList = action.payload;
 
-            return products.map(product => {
+            return productList.map(product => {
                 return {
                     ...product,
                     image: getAbsoluteImagePath(product.image)

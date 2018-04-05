@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import FilterStyles from './Filter.module.css';
+
+import PropTypes from 'prop-types';
 import {RandomGenerator} from '../../commons/utils';
 
 class Filter extends Component {
@@ -7,64 +9,81 @@ class Filter extends Component {
         super(props);
 
         this.state = {
-            filterOptions: []
+            appliedFilterValues: []
         };
 
-        this.isFilterOptionSelected = this.isFilterOptionSelected.bind(this);
+        this.isFilterValueSelected = this.isFilterValueSelected.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
     }
 
-    isFilterOptionSelected(filterOption) {
-        return (this.state.filterOptions.indexOf(filterOption) >= 0);
+    isFilterValueSelected(filterValue) {
+        return (this.state.appliedFilterValues.indexOf(filterValue) >= 0);
     }
 
-    addFilterOption(filterOption) {
-        let filterOptions = this.state.filterOptions,
-            indexOfFilterOption = filterOptions.indexOf(filterOption);
+    addFilterValue(filterValue) {
+        let appliedFilterValues = [
+                ...this.state.appliedFilterValues
+            ],
+            doesFilterValueAlreadyExists = (this.state.appliedFilterValues.indexOf(filterValue) >= 0);
 
-        if (indexOfFilterOption < 0) {
-            filterOptions.push(filterOption);
+        if(!doesFilterValueAlreadyExists) {
+            appliedFilterValues.push(filterValue);
+
+            this.setState({
+                appliedFilterValues: appliedFilterValues
+            });
         }
+
+        return appliedFilterValues;
     }
 
-    removeFilterOption(filterOption) {
-        let filterOptions = this.state.filterOptions,
-            indexOfFilterOption = filterOptions.indexOf(filterOption);
+    removeFilterValue(filterValue) {
+        let appliedFilterValues = this.state.appliedFilterValues.slice(),
+            filterValueIndex = appliedFilterValues.indexOf(filterValue);
 
-        if (indexOfFilterOption >= 0) {
-            filterOptions.splice(indexOfFilterOption, 1);
+        if(filterValueIndex >= 0) {
+            appliedFilterValues.splice(filterValueIndex, 1);
+
+            this.setState({
+                appliedFilterValues: appliedFilterValues
+            });
         }
+
+        return appliedFilterValues;
     }
 
     handleFilterChange(event) {
-        let filterOptions = this.state.filterOptions,
-            isChecked = event.target.checked,
-            filterOption = event.target.value;
+        let isChecked = event.target.checked,
+            filterValue = event.target.value,
+            appliedFilterValues = [];
 
-        if (isChecked) {
-            this.addFilterOption(filterOption);
+        if(isChecked) {
+            appliedFilterValues = this.addFilterValue(filterValue);
         } else {
-            this.removeFilterOption(filterOption);
+            appliedFilterValues = this.removeFilterValue(filterValue);
         }
 
-        this.setState({
-            filterOptions: filterOptions
+        this.props.onChange({
+            name: this.props.filter.name,
+            values: appliedFilterValues
         });
     }
 
-    renderFilterOptions() {
-        return this.props.filter.values.map(filterOption => {
+    renderFilterValues() {
+        return this.props.filter.values.map(filterValue => {
             const id = RandomGenerator.getUID();
 
             return (
-                <li key={id} className={FilterStyles.filterOption}>
+                <li key={id} className={FilterStyles.filterValue}>
                     <input type="checkbox"
                            id={id}
-                           value={filterOption}
-                           checked={this.isFilterOptionSelected(filterOption)}
+                           className={FilterStyles.filterSelection}
+                           value={filterValue}
+                           checked={this.isFilterValueSelected(filterValue)}
                            onChange={this.handleFilterChange}/>
 
-                    <label htmlFor={id}>{filterOption}</label>
+                    <label className={FilterStyles.filterText}
+                           htmlFor={id}>{filterValue}</label>
                 </li>
             );
         });
@@ -74,12 +93,17 @@ class Filter extends Component {
         return (
             <div className={FilterStyles.filter}>
                 <h3>{this.props.filter.name}</h3>
-                <ul className={FilterStyles.filterOptions}>
-                    {this.renderFilterOptions()}
+                <ul className={FilterStyles.filterValues}>
+                    {this.renderFilterValues()}
                 </ul>
             </div>
         );
     }
 }
+
+Filter.propTypes = {
+    filter: PropTypes.object,
+    onChange: PropTypes.func
+};
 
 export default Filter;
