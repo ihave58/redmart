@@ -1,16 +1,16 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import renderer from 'react-test-renderer';
-import App from './App';
+import ProductCard from './ProductCard';
 
-describe(App, () => {
+describe(ProductCard, () => {
     const component = shallow(
-        <App/>
+        <ProductCard/>
     );
 
     it('renders and matches our snapshot', () => {
         const component = renderer.create(
-            <App/>
+            <ProductCard/>
         );
 
         const tree = component.toJSON();

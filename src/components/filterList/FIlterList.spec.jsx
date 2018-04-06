@@ -1,16 +1,16 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import renderer from 'react-test-renderer';
-import App from './App';
+import FilterList from './FilterList';
 
-describe(App, () => {
+describe(FilterList, () => {
     const component = shallow(
-        <App/>
+        <FilterList/>
     );
 
     it('renders and matches our snapshot', () => {
         const component = renderer.create(
-            <App/>
+            <FilterList/>
         );
 
         const tree = component.toJSON();

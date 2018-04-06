@@ -1,16 +1,16 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import renderer from 'react-test-renderer';
-import App from './App';
+import SearchBox from './SearchBox';
 
-describe(App, () => {
+describe(SearchBox, () => {
     const component = shallow(
-        <App/>
+        <SearchBox/>
     );
 
     it('renders and matches our snapshot', () => {
         const component = renderer.create(
-            <App/>
+            <SearchBox/>
         );
 
         const tree = component.toJSON();
