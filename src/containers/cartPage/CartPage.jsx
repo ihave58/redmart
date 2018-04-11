@@ -7,7 +7,7 @@ import {fetchProductList, removeFromCart} from '../../actions';
 
 import {LocalStorage} from '../../commons/utils';
 import ProductCard from '../../components/productCard';
-import List from '../../components/List';
+import List from '../../components/list';
 
 import CartPageStyles from './CartPage.module.css';
 import CommonStyles from '../../commons/styles/common.module.css';

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import HomePageStyles from './HomePage.module.css';
+import loggify from '../../commons/utils/loggify';
 
 class HomePage extends Component {
+    static displayName = 'HomePage';
 
     render() {
         return (
@@ -12,4 +14,4 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
+export default loggify(HomePage);

@@ -6,6 +6,21 @@ import SearchBoxStyles from './SearchBox.module.css';
 import SearchImageIcon from './searchIcon.svg';
 
 class SearchBox extends Component {
+    static displayName = 'SearchBox';
+
+    static propTypes = {
+        term: PropTypes.string,
+        pathName: PropTypes.string,
+        onSearch: PropTypes.func
+    };
+
+    static defaultProps = {
+        term: '',
+        pathName: '',
+        onSearch: () => {
+        }
+    };
+
     constructor(props) {
         super(props);
 
@@ -57,18 +72,5 @@ class SearchBox extends Component {
         );
     }
 }
-
-SearchBox.propTypes = {
-    term: PropTypes.string,
-    pathName: PropTypes.string,
-    onSearch: PropTypes.func
-};
-
-SearchBox.defaultProps = {
-    term: '',
-    pathName: '',
-    onSearch: () => {
-    }
-};
 
 export default SearchBox;

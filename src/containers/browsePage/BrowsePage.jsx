@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {addToCart, fetchFilterList, fetchProductList, removeFromCart} from '../../actions';
 import FilterList from '../../components/filterList';
-import List from '../../components/List';
+import List from '../../components/list';
 import ProductCard from '../../components/productCard';
 
 import BrowsePageStyles from './BrowsePage.module.css';
@@ -13,6 +13,7 @@ import CommonStyles from '../../commons/styles/common.module.css';
 
 import cx from 'classnames';
 import {LocalStorage} from '../../commons/utils';
+import loggify from '../../commons/utils/loggify';
 
 const _cartKey = 'cartItems';
 const isProductInCart = (product) => {
@@ -22,6 +23,8 @@ const isProductInCart = (product) => {
 };
 
 class BrowsePage extends Component {
+    static displayName = 'BrowsePage';
+
     constructor(props) {
         super(props);
 
@@ -33,6 +36,14 @@ class BrowsePage extends Component {
     componentDidMount() {
         this.props.fetchFilterList();
         this.props.fetchProductList();
+    }
+
+    shouldComponentUpdate(nextState) {
+        const {filterList, productList} = this.props;
+
+        return (
+            (filterList !== nextState.filterList) || (productList !== nextState.productList)
+        );
     }
 
     handleFilterChange(appliedFilters) {
@@ -117,4 +128,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BrowsePage);
+export default connect(mapStateToProps, mapDispatchToProps)(loggify(BrowsePage));

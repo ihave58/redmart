@@ -8,8 +8,11 @@ import ProductDetailsPage from '../../containers/productDetailsPage';
 import Header from '../../components/header';
 
 import AppStyles from './App.module.css';
+import loggify from '../../commons/utils/loggify';
 
 class App extends Component {
+    static displayName = 'RedMartApp';
+
     render() {
         return (
             <BrowserRouter>
@@ -33,4 +36,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default loggify(App);

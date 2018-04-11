@@ -5,6 +5,26 @@ import {Link} from 'react-router-dom';
 import ProductCardStyles from './ProductCard.module.css';
 
 class ProductCard extends Component {
+    static displayName = 'ProductCard';
+
+    static propTypes = {
+        onAddToCart: PropTypes.func,
+        onRemoveFromCart: PropTypes.func,
+        toShowAddToCart: PropTypes.bool,
+        toShowRemoveFromCart: PropTypes.bool,
+        isAddToCartDisabled: PropTypes.bool
+    };
+
+    static defaultProps = {
+        toShowAddToCart: true,
+        toShowRemoveFromCart: false,
+        isAddToCartDisabled: false,
+        onRemoveFromCart: () => {
+        },
+        onAddToCart: () => {
+        }
+    };
+
     constructor(props) {
         super(props);
 
@@ -76,23 +96,5 @@ class ProductCard extends Component {
         );
     }
 }
-
-ProductCard.defaultProps = {
-    toShowAddToCart: true,
-    toShowRemoveFromCart: false,
-    isAddToCartDisabled: false,
-    onRemoveFromCart: () => {
-    },
-    onAddToCart: () => {
-    }
-};
-
-ProductCard.propTypes = {
-    onAddToCart: PropTypes.func,
-    onRemoveFromCart: PropTypes.func,
-    toShowAddToCart: PropTypes.bool,
-    toShowRemoveFromCart: PropTypes.bool,
-    isAddToCartDisabled: PropTypes.bool
-};
 
 export default ProductCard;

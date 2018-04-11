@@ -9,6 +9,8 @@ import cx from 'classnames';
 import {addToCart, fetchProduct} from '../../actions';
 
 class ProductDetailsPage extends Component {
+    static displayName = "ProductDetailsPage";
+
     constructor(props) {
         super(props);
 

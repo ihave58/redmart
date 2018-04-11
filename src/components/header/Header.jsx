@@ -9,10 +9,13 @@ import Logo from './logo.svg';
 
 import cx from 'classnames';
 import {UrlBuilder} from '../../commons/utils';
+import loggify from '../../commons/utils/loggify';
 
 const buildUrl = (url, params) => (new UrlBuilder(url, params)).toString();
 
 class Header extends Component {
+    static displayName = 'Header';
+
     constructor(props) {
         super(props);
 
@@ -21,9 +24,12 @@ class Header extends Component {
         };
 
         this.handleSearch = this.handleSearch.bind(this);
-        this.handleRouteChange = this.handleRouteChange.bind(this);
         this.handleBackToYourSearch = this.handleBackToYourSearch.bind(this);
     }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return false;
+    // }
 
     handleSearch(searchTerm) {
         const searchParams = new Map([
@@ -53,16 +59,6 @@ class Header extends Component {
         event.preventDefault();
 
         this.navigateBack();
-    }
-
-    handleRouteChange() {
-        this.setState({
-            searchTerm: UrlBuilder.getLocationParam('q') || ''
-        });
-    }
-
-    componentDidMount() {
-        this.props.history.listen(this.handleRouteChange);
     }
 
     render() {
@@ -118,4 +114,4 @@ class Header extends Component {
     }
 }
 
-export default withRouter(Header);
+export default withRouter(loggify(Header));

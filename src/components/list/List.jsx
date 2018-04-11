@@ -4,6 +4,18 @@ import PropTypes from 'prop-types';
 import ListStyles from './List.module.css';
 
 class List extends Component {
+    static displayName = 'List';
+
+    static propTypes = {
+        itemRenderer: PropTypes.func.isRequired
+    };
+
+    static defaultProps = {
+        itemWidth: 'auto',
+        itemHeight: 'auto',
+        items: []
+    };
+
     // constructor(props) {
     //     super(props);
     // }
@@ -33,15 +45,5 @@ class List extends Component {
         );
     }
 }
-
-List.propTypes = {
-    itemRenderer: PropTypes.func.isRequired
-};
-
-List.defaultProps = {
-    itemWidth: 'auto',
-    itemHeight: 'auto',
-    items: []
-};
 
 export default List;

@@ -5,6 +5,8 @@ import FilterListStyles from './FilterList.module.css';
 import Filter from '../filter';
 
 class FilterList extends Component {
+    static displayName = 'FilterList';
+
     constructor(props) {
         super(props);
 

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import {RandomGenerator} from '../../commons/utils';
 
 class Filter extends Component {
+    static displayName = 'Filter';
+
     constructor(props) {
         super(props);
 
